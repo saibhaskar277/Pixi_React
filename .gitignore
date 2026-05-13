@@ -1,4 +1,45 @@
+# Dependencies
 node_modules/
+
+# Build
 dist/
 build/
-.vscode/
+
+# Vite
+vite.config.ts.timestamp-*
+vite.svg
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.*
+
+# TypeScript
+*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Capacitor Android
+android/.gradle
+android/build
+android/app/build
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Temporary
+tmp/
+temp/
