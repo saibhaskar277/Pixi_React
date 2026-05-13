@@ -1,27 +1,28 @@
-# Pixi + React Game Template
+# Pixi React Game Template
 
-A scalable game architecture template using:
+A scalable PixiJS + React game architecture template using:
 
-- PixiJS for rendering/gameplay
+- PixiJS for rendering and gameplay
 - React for HUD/UI
 - TypeScript
 - Scene-based architecture
 - Event-driven communication
-- System-based game logic
+- Capacitor Android support
+- Vite build system
 
 ---
 
 # Features
 
+- PixiJS Scene System
+- React HUD System
+- Event Bus Architecture
 - Scene Manager
-- Event Bus
-- Independent Scene Systems
-- React HUD per Scene
-- Fixed Resolution Architecture
-- Scalable Project Structure
-- Pixi + React Separation
-- TypeScript Ready
-- Vite Ready
+- System Controller per Scene
+- Fixed Resolution Game Setup
+- Scalable Folder Structure
+- Vite + TypeScript
+- Android Build Support via Capacitor
 
 ---
 
@@ -31,6 +32,7 @@ A scalable game architecture template using:
 - PixiJS
 - TypeScript
 - Vite
+- Capacitor
 
 ---
 
@@ -64,6 +66,7 @@ src
 ├── React
 │   └── GameHudManager
 │       ├── HudManager.jsx
+│       │
 │       └── GameHud
 │           ├── BootHud.jsx
 │           ├── MenuHud.jsx
