@@ -4,7 +4,6 @@ import BootHud from "./GameHud/BootHud";
 import MenuHud from "./GameHud/MenuHud";
 import GameHud from "./GameHud/GameHud";
 import { GameConfig, SceneName } from "../../GameConfigs/GameConfig";
-
 import { GameEvents } from "../../GameConfigs/GameEvents";
 
 export default function HudManager() {
