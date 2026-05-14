@@ -1,6 +1,6 @@
 import { Graphics, Text } from "pixi.js";
 import { Scene } from "../Scene";
-import EventBus from "../../../HelperClasses/EventBus";
+import { EventBus } from "../../../HelperClasses/EventBus";
 import { SceneName } from "../../../GameConfigs/GameConfig";
 import { GameEvents } from "../../../GameConfigs/GameEvents";
 

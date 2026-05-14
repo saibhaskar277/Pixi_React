@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import EventBus from "../../../HelperClasses/EventBus";
+import { EventBus } from "../../../HelperClasses/EventBus";
 import "../../../React/GameHudManager/GameHud/hud.css";
 
 function getHealthColor(hp) {
@@ -15,19 +15,22 @@ function getHealthGlow(hp) {
 }
 
 export default function GameHud() {
-  const [health,   setHealth]   = useState(100);
-  const [score,    setScore]    = useState(0);
-  const [energy,   setEnergy]   = useState(100);
-  const [level,    setLevel]    = useState(1);
-  const [waveTxt,  setWaveTxt]  = useState("");
+  const [health, setHealth] = useState(100);
+  const [score, setScore] = useState(0);
+  const [energy, setEnergy] = useState(100);
+  const [level, setLevel] = useState(1);
+  const [waveTxt, setWaveTxt] = useState("");
   const [scoreKey, setScoreKey] = useState(0);
   const waveTimer = useRef(null);
 
   useEffect(() => {
     const onHealth = (v) => setHealth(Math.max(0, Math.min(100, v)));
-    const onScore  = (v) => { setScore(v); setScoreKey((k) => k + 1); };
+    const onScore = (v) => {
+      setScore(v);
+      setScoreKey((k) => k + 1);
+    };
     const onEnergy = (v) => setEnergy(Math.max(0, Math.min(100, v)));
-    const onLevel  = (v) => {
+    const onLevel = (v) => {
       setLevel(v);
       setWaveTxt(`— WAVE ${v} —`);
       clearTimeout(waveTimer.current);
@@ -35,15 +38,15 @@ export default function GameHud() {
     };
 
     EventBus.on("UPDATE_HEALTH", onHealth);
-    EventBus.on("UPDATE_SCORE",  onScore);
+    EventBus.on("UPDATE_SCORE", onScore);
     EventBus.on("UPDATE_ENERGY", onEnergy);
-    EventBus.on("UPDATE_LEVEL",  onLevel);
+    EventBus.on("UPDATE_LEVEL", onLevel);
 
     return () => {
       EventBus.off("UPDATE_HEALTH", onHealth);
-      EventBus.off("UPDATE_SCORE",  onScore);
+      EventBus.off("UPDATE_SCORE", onScore);
       EventBus.off("UPDATE_ENERGY", onEnergy);
-      EventBus.off("UPDATE_LEVEL",  onLevel);
+      EventBus.off("UPDATE_LEVEL", onLevel);
       clearTimeout(waveTimer.current);
     };
   }, []);
@@ -65,7 +68,8 @@ export default function GameHud() {
           <span className="hud-health-label">Health</span>
         </div>
         <div className={`hud-health-value ${isCritical ? "critical" : ""}`}>
-          {health}<small style={{ fontSize: "0.55em", opacity: 0.5 }}> / 100</small>
+          {health}
+          <small style={{ fontSize: "0.55em", opacity: 0.5 }}> / 100</small>
         </div>
         <div className="hud-health-track">
           <div

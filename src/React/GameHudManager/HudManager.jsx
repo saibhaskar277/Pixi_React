@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import EventBus from "../../HelperClasses/EventBus";
+import { EventBus } from "../../HelperClasses/EventBus";
 import BootHud from "./GameHud/BootHud";
 import MenuHud from "./GameHud/MenuHud";
 import GameHud from "./GameHud/GameHud";

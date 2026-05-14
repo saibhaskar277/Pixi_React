@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    /* Set this to 'bundler' if you use Vite/Webpack, or 'node16' for pure Node */
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "target": "ESNext",
+
+    /* This allows you to skip extensions in imports (e.g., import ./Bus instead of ./Bus.ts) */
+    "allowImportingTsExtensions": false,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    /* Strictness & Professionalism */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,30 +1,55 @@
-type EventCallback = (data?: any) => void;
+import { GameEventMap } from "../GameConfigs/GameEvents";
 
-class EventBus {
-  private listeners: Map<string, EventCallback[]> = new Map();
+type EventCallback<T = void> = T extends void ? () => void : (data: T) => void;
 
-  on(event: string, callback: EventCallback) {
-    if (!this.listeners.has(event)) {
-      this.listeners.set(event, []);
+export class TypedEventBus<T extends Record<string, any>> {
+  private listeners: {
+    [K in keyof T]?: EventCallback<T[K]>[];
+  } = {};
+
+  on<K extends keyof T>(event: K, callback: EventCallback<T[K]>) {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
     }
 
-    this.listeners.get(event)?.push(callback);
+    this.listeners[event]!.push(callback);
   }
 
-  emit(event: string, data?: any) {
-    this.listeners.get(event)?.forEach((cb) => cb(data));
-  }
-
-  off(event: string, callback: EventCallback) {
-    const callbacks = this.listeners.get(event);
+  off<K extends keyof T>(event: K, callback: EventCallback<T[K]>) {
+    const callbacks = this.listeners[event];
 
     if (!callbacks) return;
 
-    this.listeners.set(
-      event,
-      callbacks.filter((cb) => cb !== callback),
-    );
+    this.listeners[event] = callbacks.filter((cb) => cb !== callback);
+  }
+
+  emit<K extends keyof T>(event: K, ...data: T[K] extends void ? [] : [T[K]]) {
+    this.listeners[event]?.forEach((cb) => {
+      if (data.length > 0) {
+        (cb as any)(data[0]);
+      } else {
+        (cb as any)();
+      }
+    });
+  }
+
+  once<K extends keyof T>(event: K, callback: EventCallback<T[K]>) {
+    const onceCallback = ((...args: any[]) => {
+      (callback as any)(...args);
+
+      this.off(event, onceCallback as EventCallback<T[K]>);
+    }) as EventCallback<T[K]>;
+
+    this.on(event, onceCallback);
+  }
+
+  clear(event?: keyof T) {
+    if (event) {
+      delete this.listeners[event];
+    } else {
+      this.listeners = {};
+    }
   }
 }
 
-export default new EventBus();
+export const EventBus = new TypedEventBus<GameEventMap>();

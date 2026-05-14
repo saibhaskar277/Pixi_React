@@ -4,7 +4,7 @@ import { SceneManager } from "./SceneManagment/SceneManager";
 import { BootScene } from "./SceneManagment/GameScenes/BootScene";
 import { MenuScene } from "./SceneManagment/GameScenes/MenuScene";
 import { GameplayScene } from "./SceneManagment/GameScenes/GamePlayScene";
-import EventBus from "../HelperClasses/EventBus";
+import { EventBus } from "../HelperClasses/EventBus";
 import { GameEvents } from "../GameConfigs/GameEvents";
 
 export class PixiGame {
