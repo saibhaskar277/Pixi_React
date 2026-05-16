@@ -21,7 +21,7 @@ export const GameConfig = {
   },
 
   rendering: {
-    backgroundColor: 0x000000,
+    backgroundColor: "#000000",
 
     antialias: true,
 
